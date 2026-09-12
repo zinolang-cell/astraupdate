@@ -215,7 +215,7 @@ astraupdate/
 
 `SKILL.md` defines the workflow for Codex. `pruefgrundlage.md` records the article's guidance and source date; `dateiverarbeitung.md` explains helper commands. `agents/openai.yaml` supplies the display name and example invocation. A license copy is included inside the skill directory so it remains available when the skill is installed separately.
 
-The skill instructions and supporting reference documents are currently written in German. This README provides the English explanation and usage examples; it does not create a separate English version of the skill. The skill instructs the agent to respond in the user's language.
+`SKILL.md`, including its activation description, is written in concise English. Supporting reference documents and UI metadata remain in German. The skill instructs the agent to respond in the user's language.
 
 ## Tests
 

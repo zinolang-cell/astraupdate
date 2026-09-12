@@ -215,6 +215,8 @@ astraupdate/
 
 `SKILL.md` enthält den Ablauf für Codex. Die Prüfgrundlage dokumentiert den Artikelstand, die Dateiverarbeitung erklärt die Helferaufrufe. `agents/openai.yaml` liefert Anzeigename und Beispielaufruf. Die Lizenz liegt zusätzlich im Skillordner, damit sie bei einer isolierten Installation erhalten bleibt.
 
+`SKILL.md` einschließlich der Aktivierungsbeschreibung ist in knappem Englisch verfasst. Die Referenzdokumente und UI-Metadaten bleiben auf Deutsch. Der Skill antwortet in der Sprache des Nutzers.
+
 ## Tests
 
 Aus dem Repositoryordner:
