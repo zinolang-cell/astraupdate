@@ -1,5 +1,7 @@
 # Dateiverarbeitung bei mehreren Dateien
 
+**Zuerst Freigabe:** Vor Zustimmung zum konkreten Vorschlag nur lesen und Ergebnisse im Gespräch anzeigen oder im Arbeitsspeicher halten. Die folgenden Helferaufrufe erzeugen Dateien; führe sie erst aus, wenn auch die jeweiligen Inventar-, Sicherungs- oder Diffdateien freigegeben sind. Das Skript selbst stellt keine Rückfragen; der Agent setzt die Freigabegrenze aus `SKILL.md` durch.
+
 Der Helfer benötigt Python 3.9 oder neuer und nur dessen Standardbibliothek. Fehlt `python` auf Windows, nutze einen vorhandenen Python-Pfad; im Codex-Desktop kann `load_workspace_dependencies` den gebündelten Pfad liefern. Ohne Python lassen sich Inventar, bytegetreue Sicherung und Diff mit vorhandenen Dateitools erstellen. Dieser Helfer schreibt niemals in die geprüften Quelldateien und führt keine semantische Optimierung aus; diese erledigt der Agent nach dem Lesen.
 
 ## Inventar

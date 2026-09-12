@@ -4,7 +4,7 @@
 
 **Bestehende Skills und Markdown-Agentenanweisungen mit Codex prüfen und gezielt verbessern.**
 
-AstraUpdate enthält den Skill **`skill-prompt-optimizer`**. Er lässt Codex vorhandene Anweisungen lesen, inhaltlich beurteilen und direkt in den Originaldateien überarbeiten. Vor Änderungen werden Sicherungen angelegt; anschließend dokumentiert ein Bericht, was geändert wurde und was offen bleibt.
+AstraUpdate enthält den Skill **`skill-prompt-optimizer`**. Er lässt Codex vorhandene Anweisungen lesen, inhaltlich beurteilen und konkrete Änderungsvorschläge zur Freigabe vorlegen. Vor Dateiänderungen wartet er auf deine ausdrückliche Zustimmung; das gilt auch für das Anlegen von Sicherungen und Berichten. Nach Freigabe setzt er die vereinbarten Änderungen um und dokumentiert das Ergebnis.
 
 Grundlage ist der OpenAI-Beitrag [Rethinking skills and prompts for GPT-6 Astra](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra) von Eric Provencher vom 11. September 2026. Die Umsetzung ist ein eigenständiges Projekt und kein offizielles OpenAI-Produkt.
 
@@ -80,15 +80,16 @@ Prüfe anschließend, dass `skill-prompt-optimizer/SKILL.md` im persönlichen Sk
 
 ## Anwendung in Codex
 
-### Direkt prüfen und überarbeiten
+### Prüfen und Änderungen freigeben
 
 ```text
 Nutze $skill-prompt-optimizer, um alle meine persönlichen Skills und
-Markdown-Agentenanweisungen im verfügbaren Umfang zu prüfen und passende
-Verbesserungen direkt umzusetzen. Erstelle Sicherungen und einen Änderungsbericht.
+Markdown-Agentenanweisungen im verfügbaren Umfang zu prüfen. Zeige konkrete
+Änderungsvorschläge und geplante Sicherungen und Berichte. Frage vor Änderungen
+nach meiner ausdrücklichen Zustimmung.
 ```
 
-**Ein bloßer Aufruf des Skills verwendet ebenfalls den Modus „direkt umsetzen“.** Er ist keine reine Berichtsfunktion.
+**Standard ist: erst prüfen, dann Freigabe einholen.** Vor Zustimmung zum konkreten Vorschlag werden keine Dateien angelegt, geändert, verschoben oder gelöscht; das gilt auch für Inventare, Sicherungen und Berichte. Ein allgemeiner Optimierungsauftrag ist keine Zustimmung zu unbekannten Änderungen. Eine Freigabe gilt für das vorgestellte Paket; zusätzliche oder wesentlich geänderte Vorschläge benötigen eine neue Freigabe.
 
 ### Nur prüfen, nichts umschreiben
 
@@ -97,14 +98,14 @@ Nutze $skill-prompt-optimizer für ein Audit ohne Änderungen.
 Prüfe meine persönlichen Skills und die AGENTS.md dieses Projekts.
 ```
 
-„Nur prüfen“ und „Dry Run“ werden ebenfalls als Auftrag ohne Änderungen an den Quelldateien behandelt. Ein Inventar oder Bericht kann dabei trotzdem angelegt werden.
+„Nur prüfen“ und „Dry Run“ werden ebenfalls als Auftrag ohne Änderungen an den Quelldateien behandelt. Die Ergebnisse erscheinen im Gespräch; eine Inventar- oder Berichtsdatei benötigt eine gesonderte Erlaubnis. Ein reiner Prüfauftrag endet mit den Befunden, ohne zur Umsetzung aufzufordern.
 
 ### Auf ein Projekt begrenzen
 
 ```text
 Nutze $skill-prompt-optimizer ausschließlich für die Skills und
 Markdown-Agentenanweisungen unter C:\Projekte\MeinProjekt.
-Überarbeite passende Stellen direkt und dokumentiere die Änderungen.
+Zeige passende Änderungsvorschläge und frage vor Änderungen nach meiner Freigabe.
 ```
 
 Die Beispiele sind **Nachrichten an Codex**, keine Terminalbefehle. Zusätzliche Projekte sollten ausdrücklich mit ihren Pfaden genannt werden.
@@ -114,9 +115,10 @@ Die Beispiele sind **Nachrichten an Codex**, keine Terminalbefehle. Zusätzliche
 1. **Umfang erfassen:** Codex findet Skills über den Skillkatalog und das Dateisystem. Ein ausdrücklich eingeschränkter Auftrag hat Vorrang. Beim umfassenden Aufruf werden persönliche Skillverzeichnisse, vorhandene globale Agentenanweisungen und das aktuelle beziehungsweise genannte Projekt berücksichtigt.
 2. **Inhalte verstehen:** Beschreibungen, Anweisungen und relevante Referenzen werden gelesen. Eine gefundene Datei zählt erst nach dem Lesen als inhaltlich geprüft.
 3. **Änderungen beurteilen:** Codex unterscheidet hilfreiches Fachwissen von unnötiger Prozessvorgabe. In gemischten Markdown-Dokumenten werden Agentenanweisungen gezielt betrachtet.
-4. **Originale sichern:** Vor dem Schreiben werden die aktuellen Inhalte bytegetreu gesichert. Bereits vorhandene lokale Änderungen gehören zum Ausgangsstand.
-5. **Direkt bearbeiten:** Sinnvolle Änderungen erfolgen an den betreffenden Stellen. Bei Bedarf entstehen verlinkte Referenzen; es wird kein identischer Optimierungsblock an jede Datei angehängt.
-6. **Prüfen und berichten:** Codex liest die Ergebnisse zurück, prüft Diffs, Verweise und relevante Verhaltensfälle und dokumentiert geänderte, unveränderte und offene Dateien.
+4. **Freigabe einholen:** Betroffene Pfade, Gründe, konkrete Änderungen oder Diffs und geplante Artefakte im Gespräch zeigen. Ausdrückliche Zustimmung abwarten.
+5. **Nach Freigabe Originale sichern:** Vor dem Schreiben werden die aktuellen Inhalte bytegetreu gesichert. Bereits vorhandene lokale Änderungen gehören zum Ausgangsstand.
+6. **Freigegebene Änderungen umsetzen:** Sinnvolle Änderungen erfolgen an den betreffenden Stellen. Bei Bedarf entstehen verlinkte Referenzen; es wird kein identischer Optimierungsblock an jede Datei angehängt.
+7. **Prüfen und berichten:** Codex liest die Ergebnisse zurück, prüft Diffs, Verweise und relevante Verhaltensfälle und dokumentiert geänderte, unveränderte und offene Dateien.
 
 Das Ergebnis hängt von Modell, Kontext und Qualität der Ausgangsanweisungen ab. Eine bestimmte Tokenersparnis oder messbare Qualitätssteigerung wird nicht zugesichert.
 
@@ -124,7 +126,7 @@ Das Ergebnis hängt von Modell, Kontext und Qualität der Ausgangsanweisungen ab
 
 | Datei oder Bereich | Behandlung |
 | --- | --- |
-| Eigene `SKILL.md` und zugehörige Anweisungsreferenzen | Inhaltlich prüfen und im Umsetzungsmodus passend bearbeiten |
+| Eigene `SKILL.md` und zugehörige Anweisungsreferenzen | Inhaltlich prüfen; passende Änderungen erst nach Freigabe umsetzen |
 | `AGENTS.md`, `AGENTS.override.md` und Markdown-Prompts | Anweisungen unter Beachtung ihres Geltungsbereichs prüfen |
 | README, Architektur- und andere Fachdateien | Agentenanweisungen von fachlichem Inhalt unterscheiden |
 | `agents/openai.yaml` | Bei geändertem Verhalten auf widersprüchliche Metadaten prüfen |
@@ -144,6 +146,8 @@ Verträge, Kundendaten, historische Protokolle und fachliche Beispiele werden ni
 | `diff` | Gesicherte Originale mit dem aktuellen Stand vergleichen und einen Unified Diff erzeugen |
 
 ### Beispiel: manuelle Dateiverarbeitung
+
+Diese Befehle erzeugen Ausgabedateien und fragen selbst nicht nach Freigabe. Bei Verwendung des Skills muss Codex die Erlaubnis für diese Artefakte vor den Aufrufen einholen. Vor Freigabe bleiben Inventar und Vorschläge im Arbeitsspeicher oder im Gespräch.
 
 Die folgenden Terminalbefehle werden aus dem Repositoryordner ausgeführt. Ersetze die Beispielpfade durch tatsächlich vorhandene Pfade. Unter manchen Systemen heißt Python `python3` oder `py`.
 
@@ -188,7 +192,7 @@ Inventar und Diff benötigen vorhandene Elternordner und neue Ausgabedateinamen.
 
 ## Sicherungen, Bericht und Wiederherstellung
 
-Laufartefakte werden außerhalb der Skillverzeichnisse in einem beschreibbaren Ordner unter `.skill-optimizer-runs/<lauf-id>` abgelegt. Das Manifest ordnet jeder Sicherung ihre Originaldatei und Prüfsumme zu.
+Nach Freigabe ihrer Erstellung werden Laufartefakte außerhalb der Skillverzeichnisse in einem beschreibbaren Ordner unter `.skill-optimizer-runs/<lauf-id>` abgelegt. Das Manifest ordnet jeder Sicherung ihre Originaldatei und Prüfsumme zu.
 
 Ein Bericht nennt Suchumfang, Quellenstand, tatsächliche Inhaltsprüfung, Änderungen, unveränderte Dateien, Prüfungen und verbleibende Einschränkungen. „Alle geprüft“ bedeutet alle Dateien des dokumentierten Umfangs, nicht automatisch jede Datei auf dem Rechner.
 

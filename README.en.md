@@ -4,7 +4,7 @@
 
 **Review and improve existing skills and Markdown agent instructions with Codex.**
 
-AstraUpdate provides the **`skill-prompt-optimizer`** skill. It guides Codex through reading existing instructions, evaluating their meaning, and editing the original files directly. Backups are created before changes, and a report records what changed and what remains unresolved.
+AstraUpdate provides the **`skill-prompt-optimizer`** skill. It guides Codex through reading existing instructions, evaluating their meaning, and presenting concrete proposed edits for approval. It waits for your explicit approval before changing files, including creating backups or reports. After approval, it applies the agreed edits and documents the result.
 
 The project is based on Eric Provencher's OpenAI article [Rethinking skills and prompts for GPT-6 Astra](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra), published on September 11, 2026. This is an independent implementation, not an official OpenAI product.
 
@@ -80,15 +80,15 @@ After installation, check that `skill-prompt-optimizer/SKILL.md` exists inside y
 
 ## Using the skill in Codex
 
-### Review and apply changes directly
+### Review and approve proposed changes
 
 ```text
 Use $skill-prompt-optimizer to review all my personal skills and Markdown
-agent instructions within the available scope and apply suitable improvements
-directly. Create backups and a change report.
+agent instructions within the available scope. Show the proposed edits and
+planned backup/report locations, then ask for my approval before changing files.
 ```
 
-**Invoking the skill without further qualification also defaults to applying changes.** It is not a report-only operation.
+**The default is review first, then ask for approval.** No files are created, edited, moved, or deleted before you approve the concrete proposal, including inventory, backup, and report files. A general request to optimize is not approval of unseen edits. One approval covers the presented batch; additional or materially revised changes require another approval.
 
 ### Review without editing source files
 
@@ -97,14 +97,14 @@ Use $skill-prompt-optimizer for an audit without changes.
 Review my personal skills and this project's AGENTS.md.
 ```
 
-“Review only” and “dry run” also mean that source files should remain unchanged. An inventory or report may still be created.
+“Review only” and “dry run” also mean that source files should remain unchanged. Findings are shown in the conversation; saving an inventory or report requires separate authorization. A review-only request ends with the findings, without asking to implement them.
 
 ### Limit the scope to one project
 
 ```text
 Use $skill-prompt-optimizer exclusively for the skills and Markdown agent
 instructions under C:\Projects\MyProject.
-Apply suitable improvements directly and document the changes.
+Present suitable improvements and ask for my approval before making changes.
 ```
 
 These examples are **messages to Codex**, not terminal commands. Explicitly name the paths of any additional projects you want included.
@@ -114,9 +114,10 @@ These examples are **messages to Codex**, not terminal commands. Explicitly name
 1. **Establish scope:** Codex finds skills through the skill catalog and the filesystem. An explicitly restricted request takes precedence. A comprehensive request includes personal skill directories, existing global agent instructions, and the current or named project.
 2. **Understand the content:** Codex reads descriptions, instructions, and relevant references. Discovering a file does not count as reviewing its content.
 3. **Evaluate changes:** Codex distinguishes useful domain knowledge from unnecessary process requirements. In documents containing both instructions and other material, it focuses on the agent instructions.
-4. **Back up originals:** Current contents are saved byte for byte before editing. Existing local changes are part of the starting state.
-5. **Edit directly:** Useful changes are made where they belong. Linked references may be introduced when helpful; an identical optimization block is not appended to every file.
-6. **Verify and report:** Codex reads the results back, checks diffs, references, and relevant behavioral cases, and records changed, unchanged, and unresolved files.
+4. **Request approval:** Present affected paths, reasons, concrete edits or diffs, and planned artifact locations in the conversation. Wait for explicit approval.
+5. **Back up originals after approval:** Current contents are saved byte for byte before editing. Existing local changes are part of the starting state.
+6. **Apply approved edits:** Useful changes are made where they belong. Linked references may be introduced when helpful; an identical optimization block is not appended to every file.
+7. **Verify and report:** Codex reads the results back, checks diffs, references, and relevant behavioral cases, and records changed, unchanged, and unresolved files.
 
 Results depend on the model, context, and quality of the original instructions. No particular token savings or measurable quality improvement is guaranteed.
 
@@ -124,7 +125,7 @@ Results depend on the model, context, and quality of the original instructions. 
 
 | File or area | Treatment |
 | --- | --- |
-| Personal `SKILL.md` files and related instructional references | Review the content and apply suitable edits in implementation mode |
+| Personal `SKILL.md` files and related instructional references | Review the content; apply suitable edits only after approval |
 | `AGENTS.md`, `AGENTS.override.md`, and Markdown prompts | Review instructions while respecting their scope |
 | READMEs, architecture documents, and other domain documents | Distinguish agent instructions from domain content |
 | `agents/openai.yaml` | Check for conflicting metadata when behavior changes |
@@ -144,6 +145,8 @@ Contracts, customer data, historical logs, and domain examples are not rewritten
 | `diff` | Compare saved originals with current files and produce a unified diff |
 
 ### Example: manual file operations
+
+These commands create output files and do not prompt for approval themselves. When using the skill, Codex must obtain approval for those artifacts before running them. Before approval, it keeps the review in memory or presents it in the conversation.
 
 Run the following terminal commands from the repository directory. Replace the example paths with real paths on your machine. On some systems, Python is called `python3` or `py`.
 
@@ -188,7 +191,7 @@ Inventory and diff outputs require existing parent directories and new output fi
 
 ## Backups, reports, and restoration
 
-Run artifacts are stored outside skill directories in a writable location under `.skill-optimizer-runs/<run-id>`. The manifest maps each backup to its original file and checksum.
+Once their creation is approved, run artifacts are stored outside skill directories in a writable location under `.skill-optimizer-runs/<run-id>`. The manifest maps each backup to its original file and checksum.
 
 A report records the search scope, source version, actual content review, changes, unchanged files, verification, and remaining limitations. “All reviewed” means all files within the documented scope, not automatically every file on the computer.
 
