@@ -1,0 +1,13 @@
+# Local audit artifacts and backups
+.skill-optimizer-runs/
+*.bak
+
+# Python bytecode and virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local operating-system files
+.DS_Store
+Thumbs.db

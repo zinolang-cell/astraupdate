@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skills & Markdown optimieren"
+  short_description: "Bestehende Agentenanweisungen prüfen und überarbeiten"
+  default_prompt: "Nutze $skill-prompt-optimizer, um alle meine persönlichen Skills und Markdown-Agentenanweisungen im verfügbaren Umfang nach dem verlinkten Astra-Beitrag zu prüfen, direkt zu überarbeiten und die Änderungen mit Sicherung und Bericht zu dokumentieren."
