@@ -1,5 +1,7 @@
 # AstraUpdate
 
+**Deutsch** | [English](README.en.md)
+
 **Bestehende Skills und Markdown-Agentenanweisungen mit Codex prüfen und gezielt verbessern.**
 
 AstraUpdate enthält den Skill **`skill-prompt-optimizer`**. Er lässt Codex vorhandene Anweisungen lesen, inhaltlich beurteilen und direkt in den Originaldateien überarbeiten. Vor Änderungen werden Sicherungen angelegt; anschließend dokumentiert ein Bericht, was geändert wurde und was offen bleibt.
@@ -197,6 +199,7 @@ Für eine Wiederherstellung kann Codex anhand des Manifests gezielt die gewünsc
 ```text
 astraupdate/
 ├── README.md
+├── README.en.md
 ├── LICENSE
 ├── tests/
 │   └── test_audit_files.py
