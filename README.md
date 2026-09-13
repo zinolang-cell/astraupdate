@@ -91,6 +91,20 @@ nach meiner ausdrücklichen Zustimmung.
 
 **Standard ist: erst prüfen, dann Freigabe einholen.** Vor Zustimmung zum konkreten Vorschlag werden keine Dateien angelegt, geändert, verschoben oder gelöscht; das gilt auch für Inventare, Sicherungen und Berichte. Ein allgemeiner Optimierungsauftrag ist keine Zustimmung zu unbekannten Änderungen. Eine Freigabe gilt für das vorgestellte Paket; zusätzliche oder wesentlich geänderte Vorschläge benötigen eine neue Freigabe.
 
+### Kurze Begründung neben jedem Vorschlag
+
+Jeder Änderungsvorschlag enthält die Fundstelle, die aktuelle Regel und geplante Änderung, eine Einordnung und eine Begründung in einem Satz. Unabhängige Änderungen derselben Datei erhalten eigene Einträge. Wichtige Regeln, die erhalten bleiben sollen, stehen neben den zugehörigen Änderungen.
+
+Beispielhafte Darstellung; die tatsächliche Einordnung muss durch die geprüften Dateien belegt sein:
+
+| Aktuelle Regel → Vorschlag | Einordnung | Kurze Begründung |
+| --- | --- | --- |
+| Deployment-Anleitung vor jeder Änderung lesen → bei Deployment-Vorbereitung lesen | Veraltet / redundant | Das Dokument beschreibt Deployment-Schritte, die für eine reine Textkorrektur nicht relevant sind. |
+| Produktionsdeployment nur nach Freigabe → beibehalten | Weiterhin begründet | Dies ist eine ausdrücklich dokumentierte Freigabegrenze für Änderungen am Livesystem. |
+| Alten Kompatibilitätstest immer ausführen → bis zur Klärung beibehalten | Unklar — vorerst beibehalten | Die Liste unterstützter Clients fehlt, deshalb lässt sich die Notwendigkeit noch nicht beurteilen. |
+
+Alter, Länge, strenge Formulierungen oder ein früher verwendetes Modell machen eine Regel allein nicht veraltet. Die Begründung trennt Belege von Vermutungen und verweist nach Möglichkeit auf den relevanten Kontext. Unklare Regeln bleiben erhalten. Das Format gilt auch für reine Prüfberichte und freigegebene Berichtsdateien; Änderungen benötigen weiterhin deine Zustimmung.
+
 ### Nur prüfen, nichts umschreiben
 
 ```text

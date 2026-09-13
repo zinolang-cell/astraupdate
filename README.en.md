@@ -90,6 +90,20 @@ planned backup/report locations, then ask for my approval before changing files.
 
 **The default is review first, then ask for approval.** No files are created, edited, moved, or deleted before you approve the concrete proposal, including inventory, backup, and report files. A general request to optimize is not approval of unseen edits. One approval covers the presented batch; additional or materially revised changes require another approval.
 
+### A short reason beside every proposal
+
+Each proposed edit includes its location, the current rule and proposed replacement, an assessment, and a one-sentence reason. Separate edits in one file get separate entries. Important rules that should stay are shown alongside related changes.
+
+Illustrative examples; actual assessments must be supported by the reviewed files:
+
+| Current rule → proposal | Assessment | Short reason |
+| --- | --- | --- |
+| Read deployment instructions before every edit → read them when preparing deployment | Outdated / redundant | The document covers deployment steps that do not apply to a text-only correction. |
+| Require approval before production deployment → keep | Still justified | This is an explicitly documented approval boundary for changes to the live system. |
+| Always run the legacy compatibility check → keep pending clarification | Unclear — keep for now | The supported-client list is missing, so the check's necessity cannot yet be determined. |
+
+A rule is not considered outdated merely because it is old, long, strict, or used with an earlier model. Reasons distinguish evidence from inference and cite relevant context where available. Uncertain rules remain in place. This format also applies to review-only findings and approved reports; changes still require your approval.
+
 ### Review without editing source files
 
 ```text

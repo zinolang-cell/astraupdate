@@ -30,6 +30,18 @@ Read candidates fully in manageable groups, together with applicable parent inst
 
 Derive each edit from a concrete finding and the review criteria. Preserve responsibilities, formats, schemas, paths, tool contracts, privacy requirements, budgets, access prerequisites, and intentional approvals. Strong wording alone is not a defect. If a boundary could be either a necessary requirement or an obsolete workaround, preserve it and identify the unresolved decision. Continue independent work elsewhere.
 
+### Explain each proposed change
+
+Place a short reason immediately beside every proposed change, not only in a summary. Use a compact table or annotated list: **file/section | current rule → proposed edit | assessment | reason**. Give each independently approvable edit its own entry, even when several affect one file.
+
+Use these assessments, translated into the user's language:
+
+- **Outdated / redundant:** Cite the observed contradiction, duplication, obsolete prerequisite, or mismatch with the current workflow that supports changing the rule. Age, length, strong wording, or a newer model alone is not evidence.
+- **Still justified:** State the concrete requirement or risk the rule addresses. Keep important retained rules visible beside related edits; if simplifying their wording, explain how their effect is preserved.
+- **Unclear — keep for now:** State what evidence is missing and what would resolve it. Do not invent the original author's motive or propose removing a rule whose purpose is uncertain.
+
+Keep each reason to one concise sentence, pointing to the relevant local section, user decision, or verified source where available. Distinguish evidence from inference. Include the same explanations in review-only findings and any approved report; leave the approval requirement unchanged.
+
 Edit rules where they already belong; do not append a generic Astra block to every file. Move lengthy conditional procedures into linked references only when this makes the entry point more focused. Check incoming links, relative paths, and nested `AGENTS.md` scopes; consolidation must not turn local rules into global ones. Preserve skill names, YAML metadata, dependencies, and invocation policies unless the request requires changes. When behavior changes, check `agents/openai.yaml` for contradictions. Do not invent model requirements or change model configuration.
 
 After approval, back up the actual current contents before editing originals. Existing uncommitted changes are part of the baseline. If files changed since the proposal, reread them and seek approval for materially revised edits. Edit only within the approved scope and available write permissions. User approval does not bypass the sandbox. Record newly created references separately.

@@ -1,4 +1,4 @@
 interface:
   display_name: "Skills & Markdown optimieren"
   short_description: "Anweisungen prüfen und Änderungen zur Freigabe vorlegen"
-  default_prompt: "Nutze $skill-prompt-optimizer, um meine Skills und Markdown-Agentenanweisungen zu prüfen. Zeige konkrete Änderungsvorschläge und geplante Sicherungen und Berichte. Frage vor jeder noch nicht freigegebenen Dateiänderung und warte auf meine ausdrückliche Zustimmung."
+  default_prompt: "Nutze $skill-prompt-optimizer, um meine Skills und Markdown-Agentenanweisungen zu prüfen. Zeige neben jedem Änderungsvorschlag eine kurze Begründung und die Einordnung veraltet, weiterhin begründet oder unklar. Nenne geplante Sicherungen und Berichte. Frage vor jeder noch nicht freigegebenen Dateiänderung und warte auf meine ausdrückliche Zustimmung."
